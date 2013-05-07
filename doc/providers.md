@@ -6,3 +6,4 @@ Veewee now has multiple virtual machine (VM) providers. Initially Veewee started
 * [Guide for VMware Fusion](fusion.md)
 * [Guide for KVM](kvm.md)
 * [Guide for Parallels](parallels.md)
+* [Guide for Openvz](openvz.md)

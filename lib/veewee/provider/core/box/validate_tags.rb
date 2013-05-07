@@ -92,25 +92,25 @@ module Veewee
         def checks_linux
           return [
             { :description => 'Checking user',
-              :tags => [ 'virtualbox','kvm', 'parallels'],
+              :tags => [ 'virtualbox','kvm', 'parallels', 'openvz'],
               :command => 'who am i',
               :expected_string => definition.ssh_user,
               :sudo => false
           },
           { :description => 'Checking sudo',
-            :tags => [ 'virtualbox','kvm', 'parallels'],
+            :tags => [ 'virtualbox','kvm', 'parallels', 'openvz'],
             :command => 'whoami',
             :expected_string => 'root',
             :sudo => true
           },
           { :description => 'Checking ruby',
-            :tags => [ 'virtualbox','kvm', 'parallels','ruby'],
+            :tags => [ 'virtualbox','kvm', 'parallels','openvz', 'ruby'],
             :command => '. /etc/profile ;ruby --version 2> /dev/null 1> /dev/null;  echo $?',
             :expected_string => "0",
             :sudo => false
           },
           { :description => 'Checking gem',
-            :tags => [ 'virtualbox','kvm', 'parallels','gem'],
+            :tags => [ 'virtualbox','kvm', 'parallels', 'openvz', 'gem'],
             :command => '. /etc/profile ;gem --version 2> /dev/null 1> /dev/null;  echo $?',
             :expected_string => "0",
             :sudo => false

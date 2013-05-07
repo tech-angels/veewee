@@ -4,251 +4,301 @@ Windows7_64:
   :kvm:
   :vbox: Windows7_64
   :parallels: win-7
+  :openvz:
 Windows7:
   :fusion: windows7
   :kvm:
   :vbox: Windows7
   :parallels: win-7
+  :openvz:
 Windows8:
   :fusion:
   :kvm:
   :vbox: Windows8
   :parallels: win-8
+  :openvz:
 Windows8_64:
   :fusion:
   :kvm:
   :vbox: Windows8_64
   :parallels: win-8
+  :openvz:
 WindowsNT:
   :fusion: winNT
   :kvm:
   :vbox: WindowsNT
   :parallels: win-net
+  :openvz:
 Windows2008:
   :fusion: longhorn
   :kvm:
   :vbox: Windows2008
   :parallels: win-2008
+  :openvz:
 Windows2008_64:
   :fusion: longhorn-64
   :kvm:
   :vbox: Windows2008_64
   :parallels: win-2008
+  :openvz:
 WindowsVista_64:
   :fusion: winvista-64
   :kvm:
   :vbox: WindowsVista_64
   :parallels: win-vista
+  :openvz:
 WindowsVista:
   :fusion: winvista
   :kvm:
   :vbox: WindowsVista
   :parallels: win-vista
+  :openvz:
 Windows2003:
   :fusion: winnetstandard
   :kvm:
   :vbox: Windows2003
   :parallels: win-2003
+  :openvz:
 Windows2003_64:
   :fusion: winnetstandard-64
   :kvm:
   :vbox: Windows2003_64
   :parallels: win-2003
+  :openvz:
 WindowsXP_64:
   :fusion: winXPPro-64
   :kvm:
   :vbox: WindowsXP_64
   :parallels: win-xp
+  :openvz:
 WindowsXP:
   :fusion: winXP
   :kvm:
   :vbox: WindowsXP
   :parallels: win-xp
+  :openvz:
 Windows2000:
   :fusion:
   :kvm:
   :vbox: Windows200
   :parallels: win-2000
+  :openvz:
 WindowsNT4:
   :fusion:
   :kvm:
   :vbox: WindowsNT4
   :parallels: win-nt
+  :openvz:
 WindowsMe:
   :fusion:
   :kvm:
   :vbox: WindowsMe
   :parallels: win-me
+  :openvz:
 Windows98:
   :fusion:
   :kvm:
   :vbox: Windows98
   :parallels: win-98
+  :openvz:
 Windows95:
   :fusion:
   :kvm:
   :vbox: Windows95
   :parallels: win-95
+  :openvz:
 Windows31:
   :fusion:
   :kvm:
   :vbox: Windows31
   :parallels: win-311
+  :openvz:
 Other:
   :fusion: other
   :kvm:
   :vbox: Other
   :parallels: other
+  :openvz:
 Other_64:
   :fusion: other-64
   :kvm:
   :vbox: Other_64
   :parallels: other
+  :openvz:
 FreeBSD:
   :fusion: freeBSD
   :kvm:
   :vbox: FreeBSD
   :parallels: freebsd
+  :openvz:
 FreeBSD_64:
   :fusion: freebsd-64
   :kvm:
   :vbox: FreeBSD_64
   :parallels: freebsd
+  :openvz:
 Oracle:
   :fusion: oraclelinux
   :kvm:
   :vbox: Oracle
   :parallels: other
+  :openvz:
 Oracle_64:
   :fusion: oraclelinux-64
   :kvm:
   :vbox: Oracle_64
   :parallels: other
+  :openvz:
 Debian:
   :fusion: debian5
   :kvm:
   :vbox: Debian
   :parallels: debian
+  :openvz: debian-6.0-x86
 Debian_64:
   :fusion: debian5-64
   :kvm:
   :vbox: Debian_64
   :parallels: debian
+  :openvz: debian-6.0-x86_64
 Debian6:
   :fusion: debian6
   :kvm:
   :vbox: Debian
   :parallels: debian
+  :openvz: debian-6.0-x86
 Debian6_64:
   :fusion: debian6-64
   :kvm:
   :vbox: Debian_64
   :parallels: debian
+  :openvz: debian-6.0-x86_64
 Gentoo:
   :fusion: other26xlinux
   :kvm:
   :vbox: Gentoo
   :parallels: other
+  :openvz: 
 Gentoo_64:
   :fusion: other26xlinux-64
   :kvm:
   :vbox: Gentoo_64
   :parallels: other
+  :openvz: 
 Linux22:
   :fusion: linux
   :kvm:
   :vbox: Linux22
   :parallels: other
+  :openvz: 
 Linux24:
   :fusion: other24xlinux
   :kvm:
   :vbox: Linux24
   :parallels: linux-2.4
+  :openvz: 
 Linux24_64:
   :fusion: other24xlinux-64
   :kvm:
   :vbox: Linux24_64
   :parallels: linux-2.4
+  :openvz: 
 Linux26:
   :fusion: other26xlinux
   :kvm:
   :vbox: Linux26
   :parallels: linux-2.6
+  :openvz: 
 Linux26_64:
   :fusion: other26xlinux-64
   :kvm:
   :vbox: Linux26_64
   :parallels: linux-2.6
+  :openvz: 
 RedHat:
   :fusion: RedHat
   :kvm:
   :vbox: RedHat
   :parallels: redhat
+  :openvz: 
 RedHat_64:
   :fusion: RedHat_64
   :kvm:
   :vbox: RedHat_64
   :parallels: redhat
+  :openvz: 
 RedHat5:
   :fusion: rhel5
   :kvm:
   :vbox: RedHat
   :parallels: redhat
+  :openvz: 
 RedHat5_64:
   :fusion: rhel5-64
   :kvm:
   :vbox: RedHat_64
   :parallels: redhat
+  :openvz: 
 RedHat6:
   :fusion: rhel6
   :kvm:
   :vbox: RedHat
   :parallels: redhat
+  :openvz: 
 RedHat6_64:
   :fusion: rhel6-64
   :kvm:
   :vbox: RedHat_64
   :parallels: redhat
+  :openvz: 
 Centos:
   :fusion: centos
   :kvm:
   :vbox: RedHat
   :parallels: centos
+  :openvz: centos-6-x86
 Centos_64:
   :fusion: centos-64
   :kvm:
   :vbox: RedHat_64
   :parallels: centos
+  :openvz: centos-6-x86_64
 ArchLinux:
   :fusion: other26xlinux
   :kvm:
   :vbox: ArchLinux
   :parallels: linux-2.6
+  :openvz: 
 ArchLinux_64:
   :fusion: other26xlinux-64
   :kvm:
   :vbox: ArchLinux_64
   :parallels: linux-2.6
+  :openvz: 
 OpenSUSE:
   :fusion: opensuse
   :kvm:
   :vbox: OpenSUSE
   :parallels: opensuse
+  :openvz: 
 OpenSUSE_64:
   :fusion: opensuse-64
   :kvm:
   :vbox: OpenSUSE_64
   :parallels: opensuse
+  :openvz: 
 SUSE:
   :fusion: suse
   :kvm:
   :vbox: OpenSUSE
   :parallels: suse
+  :openvz: suse-12.2-x86
 SUSE_64:
   :fusion: suse-64
   :kvm:
   :vbox: OpenSUSE_64
   :parallels: suse
+  :openvz: suse-12.2-x86_64
 SLES11:
   :fusion: sles11
 SLES11_64:
@@ -258,98 +308,118 @@ Fedora:
   :kvm:
   :vbox: Fedora
   :parallels: fedora-core
+  :openvz: fedora-17-x86
 Fedora_64:
   :fusion: fedora-64
   :kvm:
   :vbox: Fedora_64
   :parallels: fedora-core
+  :openvz: fedora-17-x86_64
 Ubuntu:
   :fusion: ubuntu
   :kvm:
   :vbox: Ubuntu
   :parallels: ubuntu
+  :openvz: ubuntu-12.04-x86
 Ubuntu_64:
   :fusion: ubuntu-64
   :kvm:
   :vbox: Ubuntu_64
   :parallels: ubuntu
+  :openvz: ubuntu-12.04-x86_64
 Linux:
   :fusion: linux
   :kvm:
   :vbox: Linux
   :parallels: linux
+  :openvz:
 Solaris:
   :fusion: solaris10
   :kvm:
   :vbox: Solaris
   :parallels: solaris-10
+  :openvz:
 Solaris_64:
   :fusion: solaris10-64
   :kvm:
   :vbox: Solaris_64
   :parallels: solaris-10
+  :openvz:
 Solaris9:
   :fusion: solaris
   :kvm:
   :vbox: Solaris
   :parallels: solaris-9
+  :openvz:
 Solaris7:
   :fusion: solaris7
   :kvm:
   :vbox: Solaris
   :parallels: solaris
+  :openvz:
 Solaris8:
   :fusion: solaris8
   :kvm:
   :vbox: Solaris
   :parallels: solaris
+  :openvz:
 OpenSolaris:
   :fusion: solaris10
   :kvm:
   :vbox: OpenSolaris
   :parallels: opensolaris
+  :openvz:
 OpenSolaris_64:
   :fusion: solaris-64
   :kvm:
   :vbox: OpenSolaris_64
   :parallels: opensolaris
+  :openvz:
 OpenBSD:
   :fusion: other
   :kvm:
   :vbox: OpenBSD
   :parallels: other
+  :openvz:
 OpenBSD_64:
   :fusion: other-64
   :kvm:
   :vbox: OpenBSD_64
   :parallels: other
+  :openvz:
 NetBSD:
   :fusion: other
   :kvm:
   :vbox: NetBSD
   :parallels: other
+  :openvz:
 NetBSD_64:
   :fusion: other-64
   :kvm:
   :vbox: NetBSD_64
   :parallels: other
+  :openvz:
 ESXi5:
   :fusion: vmkernel5 
   :kvm:
   :vbox: 
   :parallels: 
+  :openvz:
 Darwin_10_7:
   :fusion: darwin11
   :kvm:
   :vbox:
   :parallels:
+  :openvz:
 Darwin_10_7_64:
   :fusion: darwin11-64
   :kvm:
   :vbox:
   :parallels:
+  :openvz:
 Darwin_10_8_64:
   :fusion: darwin12-64
   :kvm:
   :vbox:
   :parallels:
+  :openvz:
