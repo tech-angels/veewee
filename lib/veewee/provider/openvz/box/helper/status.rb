@@ -4,7 +4,7 @@ module Veewee
       module BoxCommand
 
         def running?
-          command="vzlist -HN #{self.name} -ostatus"
+          command="vzlist -HN '#{self.name}' -ostatus||true"
           shell_results=shell_exec("#{command}",{:mute => true})
           running=shell_results.stdout.split(/\n/).grep(/^running/).size!=0
 
@@ -15,7 +15,7 @@ module Veewee
         # Check if box is running
         def exists?
 
-          command="vzctl -aHN #{self.name} -ostatus|wc -l"
+          command="vzlist -aHN '#{self.name}' -ostatus|wc -l"
           shell_results=shell_exec("#{command}",{:mute => true})
           exists=shell_results.stdout.split(/\n/).grep(/1/).size!=0
 

@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Veewee
   module Provider
     module Openvz
@@ -23,12 +25,17 @@ module Veewee
         end
 
         def get_free_veid
-          veid=`vzlist -aHoveid`.split.sort.last || 1000).to_i + 1
+          veid=(`vzlist -aHoveid`.split.sort.last || 1000).to_i + 1
           env.logger.info "Using new VEID #{veid}"
           return veid
         end
 
         def create_vm
+          if exists? then
+            halt
+            destroy
+          end
+
           openvz_definition=definition.dup
           template=openvz_template(definition.os_type_id)
 
@@ -40,11 +47,36 @@ module Veewee
           command="vzctl set #{self.veid} --name '#{self.name}' --cpus #{definition.cpu_count} --save"
           shell_exec("#{command}")
 
-          command="vzctl set #{self.name} --name '#{self.name}' --memsize #{definition.memory_size}M --save"
+          # Compute number of 4kb pages needed. definition.memory_size is in Megabytes
+          nbpages = definition.memory_size.to_i * 256 #  1024 * 1024 / 4096
+          command="vzctl set '#{self.name}' --vmguarpages #{nbpages} --oomguarpages #{nbpages} --privvmpages #{nbpages}:#{(nbpages*1.1).to_i} --save"
           shell_exec("#{command}")
 
-          command="vzctl set #{self.name} --netif_add eth0 --save"
+          # Start the VM
+          up
+
+          # Install vagrant user
+          command="vzctl exec '#{self.name}' 'groupadd vagrant && useradd vagrant -g vagrant && echo vagrant:vagrant|chpasswd && mkdir -p /home/vagrant/.ssh && chown vagrant.vagrant -R /home/vagrant && echo \"vagrant ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers'"
           shell_exec("#{command}")
+
+          # Install vagrant public SSH key
+          vagrant_key = open('https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub').read
+          File.open("/var/lib/vz/private/#{self.veid}/home/vagrant/.ssh/authorized_keys", 'w') { |f| f.write(vagrant_key) }
+
+          command="vzctl set '#{self.name}' --netif_add eth0,,vzeth#{veid},,br0 --save"
+          shell_exec("#{command}")
+
+          # Set up networking
+          networking_interfaces = <<"END"
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+END
+          File.open("/var/lib/vz/private/#{self.veid}/etc/network/interfaces", 'w') { |f| f.write(networking_interfaces) }
+
+          halt
         end
 
       end
