@@ -1,10 +1,11 @@
 require 'veewee/provider/core/box'
 require 'veewee/provider/core/helper/tcp'
 
-require 'veewee/provider/openvz/box/helper/status'
+require 'veewee/provider/openvz/box/helper/buildinfo'
 require 'veewee/provider/openvz/box/helper/ip'
 require 'veewee/provider/openvz/box/helper/ssh_options'
-require 'veewee/provider/openvz/box/helper/buildinfo'
+require 'veewee/provider/openvz/box/helper/status'
+require 'veewee/provider/openvz/box/helper/veid'
 
 require 'veewee/provider/openvz/box/build'
 require 'veewee/provider/openvz/box/up'
@@ -21,8 +22,6 @@ module Veewee
   module Provider
     module Openvz
       class Box < Veewee::Provider::Core::Box
-
-        attr_accessor :veid
 
         include ::Veewee::Provider::Openvz::BoxCommand
         include ::Veewee::Provider::Core::BoxCommand

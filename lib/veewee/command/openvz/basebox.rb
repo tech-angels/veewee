@@ -1,19 +1,19 @@
 require 'veewee'
 require 'optparse'
-require 'veewee/command/vagrant/ostypes'
-require 'veewee/command/vagrant/templates'
-require 'veewee/command/vagrant/list'
-require 'veewee/command/vagrant/build'
-require 'veewee/command/vagrant/destroy'
-require 'veewee/command/vagrant/up'
-require 'veewee/command/vagrant/halt'
-require 'veewee/command/vagrant/ssh'
-require 'veewee/command/vagrant/winrm'
-require 'veewee/command/vagrant/define'
-require 'veewee/command/vagrant/undefine'
-require 'veewee/command/vagrant/validate'
-require 'veewee/command/vagrant/export'
-require 'veewee/command/vagrant/screenshot'
+require 'veewee/command/openvz/ostypes'
+require 'veewee/command/openvz/templates'
+require 'veewee/command/openvz/list'
+require 'veewee/command/openvz/build'
+require 'veewee/command/openvz/destroy'
+require 'veewee/command/openvz/up'
+require 'veewee/command/openvz/halt'
+require 'veewee/command/openvz/ssh'
+require 'veewee/command/openvz/winrm'
+require 'veewee/command/openvz/define'
+require 'veewee/command/openvz/undefine'
+require 'veewee/command/openvz/validate'
+require 'veewee/command/openvz/export'
+require 'veewee/command/openvz/screenshot'
 
 
 module Veewee
@@ -38,6 +38,8 @@ module Veewee
           @subcommands.register(:undefine)    { Veewee::Command::Openvz::Undefine }
           @subcommands.register(:export)    { Veewee::Command::Openvz::Export }
           @subcommands.register(:validate)    { Veewee::Command::Openvz::Validate }
+
+          @subcommands.
 
         end
 
@@ -75,7 +77,7 @@ module Veewee
             end
 
             opts.separator ""
-            opts.separator "For help on any individual command run `vagrant basebox COMMAND -h`"
+            opts.separator "For help on any individual command run `openvz basebox COMMAND -h`"
           end
 
           @env.ui.info(opts.help, :prefix => false)

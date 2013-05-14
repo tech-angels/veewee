@@ -17,6 +17,14 @@ module Veewee
         box(box_name).build(options)
       end
 
+      desc "export [BOX_NAME]", "Exports the basebox to the Openvz template format"
+      method_option :debug,:type => :boolean , :default => false, :aliases => "-d", :desc => "enable debugging"
+      method_option :force,:type => :boolean , :default => false, :aliases => "-f", :desc => "overwrite existing file"
+      def export(box_name)
+       box(box_name).export_openvz(options)
+      end
+
+
       desc "validate [BOX_NAME]", "Validates a box against openvz compliancy rules"
       method_option :tags,:type => :array, :default => %w{openvz puppet chef}, :aliases => "-t", :desc => "tags to validate"
       def validate(box_name)

@@ -10,7 +10,7 @@ module Veewee
           opts = OptionParser.new do |opts|
             opts.banner = "Destroy the basebox that was built"
             opts.separator ""
-            opts.separator "Usage: vagrant basebox destroy <boxname>"
+            opts.separator "Usage: openvz basebox destroy <boxname>"
 
             opts.on("-f", "--force", "overwrite the basebox") do |f|
               options['force'] = f

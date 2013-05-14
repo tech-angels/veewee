@@ -52,7 +52,7 @@ module Veewee
           begin
 
             ui.info "Exporting the box"
-            command = "vzdump #{name} --dumpdir ."
+            command = "vzdump --dumpdir #{Dir.getwd} #{self.veid}"
             env.logger.debug("Command: #{command}")
             shell_exec(command, {:mute => false})
 

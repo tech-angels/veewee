@@ -40,11 +40,11 @@ module Veewee
           template=openvz_template(definition.os_type_id)
 
           # Create the vm
-          self.veid=get_free_veid()
-          command="vzctl create #{self.veid} --ostemplate #{template}"
+          new_veid=get_free_veid()
+          command="vzctl create #{new_veid} --ostemplate #{template}"
           shell_exec("#{command}")
 
-          command="vzctl set #{self.veid} --name '#{self.name}' --cpus #{definition.cpu_count} --save"
+          command="vzctl set #{new_veid} --name '#{self.name}' --cpus #{definition.cpu_count} --save"
           shell_exec("#{command}")
 
           # Compute number of 4kb pages needed. definition.memory_size is in Megabytes
@@ -61,9 +61,9 @@ module Veewee
 
           # Install vagrant public SSH key
           vagrant_key = open('https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub').read
-          File.open("/var/lib/vz/private/#{self.veid}/home/vagrant/.ssh/authorized_keys", 'w') { |f| f.write(vagrant_key) }
+          File.open("/var/lib/vz/private/#{new_veid}/home/vagrant/.ssh/authorized_keys", 'w') { |f| f.write(vagrant_key) }
 
-          command="vzctl set '#{self.name}' --netif_add eth0,,vzeth#{veid},,br0 --save"
+          command="vzctl set '#{self.name}' --netif_add eth0,,vzeth#{new_veid},,br0 --save"
           shell_exec("#{command}")
 
           # Set up networking
@@ -74,7 +74,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 END
-          File.open("/var/lib/vz/private/#{self.veid}/etc/network/interfaces", 'w') { |f| f.write(networking_interfaces) }
+          File.open("/var/lib/vz/private/#{new_veid}/etc/network/interfaces", 'w') { |f| f.write(networking_interfaces) }
 
           halt
         end
