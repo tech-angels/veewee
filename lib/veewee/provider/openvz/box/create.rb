@@ -17,6 +17,10 @@ module Veewee
         def create_disk
         end
 
+        def debian_distribution?
+          env.ostypes[definition.os.type_id][:openvz] =~ /^(debian|ubuntu)/
+        end
+
         def openvz_template(type_id)
           env.logger.info "Translating #{type_id} into openvz template"
           openvz_template=env.ostypes[type_id][:openvz]
@@ -54,6 +58,22 @@ module Veewee
 
           # Start the VM
           up
+
+          if debian_distribution? then
+            # Configure locale
+            command="vzctl exec '#{self.name}' 'locale-gen --purge en_US.UTF-8'"
+            shell_exec("#{command}")
+            File.open("/var/lib/vz/private/#{new_veid}/etc/default/locale", "w") { |f| f.write("LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"\n") }
+           
+            # Install NTP
+            command="vzctl exec '#{self.name}' 'apt-get install ntp'"
+            shell_exec("#{command}")
+
+            # Upgrade packages
+            command="vzctl exec '#{self.name}' 'apt-get dist-upgrade'"
+            shell_exec("#{command}")
+ 
+          end 
 
           # Install vagrant user
           command="vzctl exec '#{self.name}' 'groupadd vagrant && useradd vagrant -g vagrant && echo vagrant:vagrant|chpasswd && mkdir -p /home/vagrant/.ssh && chown vagrant.vagrant -R /home/vagrant && echo \"vagrant ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers'"
