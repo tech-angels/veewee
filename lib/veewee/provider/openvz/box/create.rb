@@ -18,7 +18,7 @@ module Veewee
         end
 
         def debian_distribution?
-          env.ostypes[definition.os.type_id][:openvz] =~ /^(debian|ubuntu)/
+          env.ostypes[definition.os_type_id][:openvz] =~ /^(debian|ubuntu)/
         end
 
         def openvz_template(type_id)
@@ -59,22 +59,6 @@ module Veewee
           # Start the VM
           up
 
-          if debian_distribution? then
-            # Configure locale
-            command="vzctl exec '#{self.name}' 'locale-gen --purge en_US.UTF-8'"
-            shell_exec("#{command}")
-            File.open("/var/lib/vz/private/#{new_veid}/etc/default/locale", "w") { |f| f.write("LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"\n") }
-           
-            # Install NTP
-            command="vzctl exec '#{self.name}' 'apt-get install ntp'"
-            shell_exec("#{command}")
-
-            # Upgrade packages
-            command="vzctl exec '#{self.name}' 'apt-get dist-upgrade'"
-            shell_exec("#{command}")
- 
-          end 
-
           # Install vagrant user
           command="vzctl exec '#{self.name}' 'groupadd vagrant && useradd vagrant -g vagrant && echo vagrant:vagrant|chpasswd && mkdir -p /home/vagrant/.ssh && chown vagrant.vagrant -R /home/vagrant && echo \"vagrant ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers'"
           shell_exec("#{command}")
@@ -83,7 +67,7 @@ module Veewee
           vagrant_key = open('https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub').read
           File.open("/var/lib/vz/private/#{new_veid}/home/vagrant/.ssh/authorized_keys", 'w') { |f| f.write(vagrant_key) }
 
-          command="vzctl set '#{self.name}' --netif_add eth0,,vzeth#{new_veid},,br0 --save"
+          command="vzctl set '#{self.name}' --netif_add eth0,,,,br0 --save"
           shell_exec("#{command}")
 
           # Set up networking
@@ -95,6 +79,26 @@ auto eth0
 iface eth0 inet dhcp
 END
           File.open("/var/lib/vz/private/#{new_veid}/etc/network/interfaces", 'w') { |f| f.write(networking_interfaces) }
+
+          # Restart the VM to be sure networking starts correctly
+          halt
+          up
+          sleep(10)
+
+          if debian_distribution? then
+            # Upgrade packages
+            shell_exec("vzctl exec '#{self.name}' 'apt-get update'")
+            shell_exec("vzctl exec '#{self.name}' 'export DEBIAN_FRONTEND=noninteractive && yes | apt-get dist-upgrade'")
+
+            # Configure locale
+            command="vzctl exec '#{self.name}' 'locale-gen --purge en_US.UTF-8'"
+            shell_exec("#{command}")
+            File.open("/var/lib/vz/private/#{new_veid}/etc/default/locale", "w") { |f| f.write("LANG=\"en_US.UTF-8\"\nLANGUAGE=\"en_US:en\"\n") }
+          
+            # Install NTP
+            command="vzctl exec '#{self.name}' 'export DEBIAN_FRONTEND=noninteractive && yes | apt-get install ntp'"
+            shell_exec("#{command}")
+          end 
 
           halt
         end
